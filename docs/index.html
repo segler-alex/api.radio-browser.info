@@ -20,77 +20,85 @@
                 <h1 class="card-title">API.radio-browser.info docs</h1>
                 <h2 class="card-subtitle mb-2 text-muted">HowTo</h2>
 
+                There are 2 possible ways to use this API:
+                <ul>
+                    <li>use it directly</li>
+                    <li>use 3rd party libraries</li>
+                </ul>
+                <h3>use it directly</h3>
                 These steps should be done in your APP or program.
                 <ol>
                     <li>
-                        <H3>Get a list of available servers</H3>
-                        Do a DNS-lookup of 'all.api.radio-browser.info'. This gives you a list of all available
-                        servers.<br />
-                        To get the nice names you can do a reverse DNS-Lookup of the entries from the first request and
-                        display them
-                        to the user.<br />
-                        There are some examples of how to do this in different languages: <a
-                            href="examples/serverlist.js">NodeJS</a>, <a href="examples/serverlist.py">Python</a>, <a
-                            href="examples/serverlist.java">Java (Android)</a><br />
-                        Now you have a list of multiple names of servers which you can use to directly connect to with
-                        HTTP
-                        and
-                        preferably HTTPS.<br />
-                        Example: https://de1.api.radio-browser.info, https://de2.api.radio-browser.info, ..
+                        <u>Get a list of available servers</u>
+                        <p>
+                            Do a DNS-lookup of 'all.api.radio-browser.info'. This gives you a list of all available
+                            servers. To get the nice names you can do a reverse DNS-Lookup of the entries from the first
+                            request and display them
+                            to the user. There are some examples of how to do this in different languages: <a
+                                href="examples/serverlist.js">NodeJS</a>, <a href="examples/serverlist.py">Python</a>,
+                            <a href="examples/serverlist.java">Java (Android)</a><br />
+                            Now you have a list of multiple names of servers which you can use to directly connect to
+                            with
+                            HTTP and preferably HTTPS.<br />
+                            Example: https://de1.api.radio-browser.info, https://de2.api.radio-browser.info, ..
+                        </p>
                     </li>
                     <li>
-                        <H3>Choose an entry from the list</H3>
-                        Either let the user choose one server from the list with a dialog or<br />
-                        just choose a random one. It is a good idea to check the choosen one with a simple status
-                        request to
-                        "/stats" if it still works.
+                        <u>Choose an entry from the list</u>
+                        <p>
+                            Either let the user choose one server from the list with a dialog or<br />
+                            just choose a random one. It is a good idea to check the choosen one with a simple status
+                            request to "/stats" if it still works.
+                        </p>
                     </li>
                     <li>
-                        <H3>Continue with the docs of the server</H3>
-                        I try to keep them all at the same version, so they should always all be the same.<br />
-                        Here are some examples of working servers:
-                        <ul>
-                            <li><a href="https://de1.api.radio-browser.info">https://de1.api.radio-browser.info</a></li>
-                            <li><a href="https://fr1.api.radio-browser.info">https://fr1.api.radio-browser.info</a></li>
-                            <li><a href="https://nl1.api.radio-browser.info">https://nl1.api.radio-browser.info</a></li>
-                        </ul>
-                        Click the links to find out about the API.
+                        <u>Continue with the docs of the server</u>
+                        <p>
+                            I try to keep them all at the same version, so they should always all be the same.<br />
+                            Here are some examples of working servers:<br />
+                            <a href="https://de1.api.radio-browser.info">https://de1.api.radio-browser.info</a>,
+                            <a href="https://fr1.api.radio-browser.info">https://fr1.api.radio-browser.info</a>,
+                            <a href="https://nl1.api.radio-browser.info">https://nl1.api.radio-browser.info</a><br />
+                            Click the links to find out about the API.
+                        </p>
                     </li>
                 </ol>
+                <h3>3rd party libraries</h3>
+                <ul>
+                    <li>radiobrowser4j Java library - <a href="https://github.com/sfuhrm/radiobrowser4j">GitHub</a></li>
+                    <li>NodeJS module - <a href="https://www.npmjs.com/package/radio-browser">NPM</a> - <a
+                            href="https://github.com/nepodev/radio-browser">GitHub</a></li>
+                    <li>Python module - <a href="https://pypi.org/project/pyradios/">pypi.org</a> - <a
+                            href="https://github.com/andreztz/pyradios">GitHub</a></li>
+                    <li>Rust crate - <a href="https://crates.io/crates/rustio">crates.io</a> - <a
+                            href="https://gitlab.gnome.org/haecker-felix/Rustio">GitLab</a></li>
+                </ul>
                 <h2 class="card-subtitle mb-2 text-muted">Notice</h2>
                 <p>
                     Users of the old API (SERVER = www.radio-browser.info) should migrate to the new one. It uses
                     a newer server software, which is actively maintained and which is faster. Please follow the
                     documentation
                     bellow.
-                    <br /><br />
-                    <b>I am still using the old API, what should I do?</b>
-                    <br />
-                    There are only a few minor changes in the api. Most things can be kept the same.
-                    <ol>
-                        <li>Do NOT use the "id" fields anymore! They do not work accross multiple servers. Use the uuid
-                            fields
-                            instead (e.g.: stationuuid, checkuuid, clickuuid). These fields are kept consistend accross
-                            servers in
-                            the network.
-                            If you still use id fields to for example keep a favourite station list please change this
-                            behaviour as
-                            soon as posible.
-                        </li>
-                        <li>
-                            In the JSON some fields that were previously strings, are now numbers or bools. Please visit
-                            the
-                            docs
-                            for that.
-                        </li>
-                        <li>
-                            Never use a direct link to a single new server. It is much better to get a list of the
-                            servers
-                            like
-                            described above. Available server names may change.
-                        </li>
-                    </ol>
                 </p>
+                <h3>I am still using the old API, what should I do?</h3>
+                There are only a few minor changes in the api. Most things can be kept the same.
+                <ol>
+                    <li>Do NOT use the "id" fields anymore! They do not work accross multiple servers. Use the uuid
+                        fields
+                        instead (e.g.: stationuuid, checkuuid, clickuuid). These fields are kept consistend accross
+                        servers in the network.
+                        If you still use id fields to for example keep a favourite station list please change this
+                        behaviour as soon as posible.
+                    </li>
+                    <li>
+                        In the JSON some fields that were previously strings, are now numbers or bools. Please visit
+                        the docs for that.
+                    </li>
+                    <li>
+                        Never use a direct link to a single new server. It is much better to get a list of the
+                        servers like described above. Available server names may change.
+                    </li>
+                </ol>
             </div>
         </div>
     </div>
