@@ -25,6 +25,25 @@ function get_radiobrowser_base_urls() {
 }
 
 /**
+ * Ask a server for its settings.
+ */
+function get_radiobrowser_server_config(baseurl) {
+    return new Promise((resolve, reject)=>{
+        var request = new XMLHttpRequest()
+        request.open('GET', baseurl + '/json/config', true);
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 300){
+                var items = JSON.parse(request.responseText);
+                resolve(items);
+            }else{
+                reject(request.statusText);
+            }
+        }
+        request.send();
+    });
+}
+
+/**
  * Get a random available radio-browser server.
  * Returns: string - base url for radio-browser api
  */
@@ -37,4 +56,7 @@ function get_radiobrowser_base_url_random() {
 
 get_radiobrowser_base_url_random().then((x)=>{
     console.log("-",x);
+    return get_radiobrowser_server_config(x);
+}).then(config=>{
+    console.log("config:",config);
 });
