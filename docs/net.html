@@ -79,7 +79,7 @@
      * Ask a specified server for a list of all other server.
      */
     async function get_radiobrowser_base_urls() {
-        let result = await simple_request('http://all.api.radio-browser.info/json/servers');
+        let result = await simple_request('https://fr1.api.radio-browser.info/json/servers');
         if (result) {
             let items = result.map(x => "https://" + x.name);
             return items;
