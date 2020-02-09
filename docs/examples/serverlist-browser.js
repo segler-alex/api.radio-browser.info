@@ -11,6 +11,7 @@ So we have to fallback to ask a single server for a list.
 function get_radiobrowser_base_urls() {
     return new Promise((resolve, reject)=>{
         var request = new XMLHttpRequest()
+        // If you need https, please use the fixed server fr1.api.radio-browser.info for this request only
         request.open('GET', 'http://all.api.radio-browser.info/json/servers', true);
         request.onload = function() {
             if (request.status >= 200 && request.status < 300){
